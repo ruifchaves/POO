@@ -6,14 +6,21 @@ import java.util.Scanner;
 
 public class Exemplo4 {
     public static void main(String[] args) {
-        int soma = 0, i = 0, n;
+        int soma = 0, n;
+        String resp;
         Scanner input = new Scanner(System.in);
+
         do {
             System.out.println("Quantos números quer somar?");
             n = input.nextInt();
-            i++;
-        } while (i < n);
+            for(int i=0; i<n; i++){
+                System.out.print("Valor a somar: ");
+                soma += input.nextInt();
+            }
+            System.out.print("Quer continuar? [s/n]");
+            resp = input.next();
+        } while (resp.charAt(0) != 'n');
         input.close();
-        System.out.print("A somatório dos " + " números é: " + soma);
+        System.out.print("A somatório dos números é: " + soma);
     }
 }

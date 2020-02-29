@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * Calcular o somatório de n números enquanto o utilizador assim o quiser
+ * Calcular o somatório de n números
  */
 
 public class Exemplo4V2{
