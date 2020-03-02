@@ -47,5 +47,6 @@ public class Ex4{
         else subdesc="descido";
         System.out.println("A média das "+n+" temperaturas foi de "+med(temps)+" graus.");
         System.out.println("A maior variação registou-se entre os dias "+varia[0]+" e "+varia[1]+", tendo a temperatura "+subdesc+" "+Math.abs(varia[2])+" graus.");
+        input.close();
     }
 }

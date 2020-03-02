@@ -23,6 +23,7 @@ public class Ex5 {
             perim = base + alt;
             area = (base * alt) / 2;
             System.out.printf("A perímetro é %.5f e a área é %.5f. \n\n", perim, area);
+            input.close();
         }
     }
 }

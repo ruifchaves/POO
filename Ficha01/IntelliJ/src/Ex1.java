@@ -27,6 +27,7 @@ public class Ex1 {
             case 5: resp = "Sexta-feira"; break;
             default: resp = "Sábado"; break;}      //caso tenha case 6 em vez de default reclama que o resp não foi inicializado
          System.out.println("O dia da semana é: "+resp);
+        input.close();
     }
 }
 

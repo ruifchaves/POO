@@ -17,5 +17,6 @@ public class Ex1V2 {
         ano = input.nextInt();
         LocalDate data = LocalDate.of(ano,mes,dia);
         System.out.println("O dia da semana da data dada é: "+data.getDayOfWeek());
+        input.close();
     }
 }
