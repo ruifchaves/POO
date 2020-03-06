@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.time.Duration;
+import java.util.Date;
 
 /**
  * 4 Metodologia de programação de POO
@@ -39,7 +40,7 @@ public class TestePrograma {
         System.out.println("EX 4:\nDigite o valor em euros e a taxa de conversão: ");
         double euros = sc.nextDouble();
         double taxa = sc.nextDouble();
-        System.out.println("Valor em euros: "+f.eurosParaLibras(euros,taxa)+"\n");
+        System.out.println("Valor em Libras: "+f.eurosParaLibras(euros,taxa)+"\n");
 
         //Exercício 5
         System.out.println("EX 5:\nDigite dois valores inteiros: ");
@@ -49,7 +50,7 @@ public class TestePrograma {
 
         //Exercício 6
         int num = Integer.parseInt(args[0]);
-        System.out.println("EX 6:\nResultado: "+f.fatorial(num)); //Integer.valueOf() vs Integer.parseInt()
+        System.out.println("EX 6:\nResultado: "+f.fatorial(num)+".\n"); //Integer.valueOf() vs Integer.parseInt()
 
         //Exercício 7
         LocalDateTime begin = LocalDateTime.now();
@@ -65,7 +66,7 @@ class Ficha1{ //caso tenha public class, erro:"Class 'Ficha1' is public, should 
         // Nota: o método devolve uma String que será
         // impressa no programa principal (na main)
         public double celsiusParaFahrenheit(double graus){
-            double fahren = graus*(9/5) + 32;
+            double fahren = graus*(1.8) + 32;
             return fahren;
         }
         public int maximoNumeros(int a, int b){
@@ -86,7 +87,7 @@ class Ficha1{ //caso tenha public class, erro:"Class 'Ficha1' is public, should 
                 maior = a; menor = b;
             }
             else{
-                maior = b; menor = b;
+                maior = b; menor = a;
             }
             media = (a+b)/2;
             return "Valores por ordem decrescente: "+maior+" "+menor+"; Média: "+media+".";
@@ -99,6 +100,16 @@ class Ficha1{ //caso tenha public class, erro:"Class 'Ficha1' is public, should 
             return fat;
         }
         public long tempoGasto(){
+            Date begin = new Date();
+            long res=1;
+            for(int i=2; i<5001; i++){
+                res*=i;
+            }
+            Date end = new Date();
+            long dif = end.getTime() - begin.getTime();
+            return dif;
+
+            /*
             LocalDateTime begin = LocalDateTime.now();
             long res=1;
             for(int i=2; i<5001; i++){
@@ -106,7 +117,8 @@ class Ficha1{ //caso tenha public class, erro:"Class 'Ficha1' is public, should 
             }
             LocalDateTime end = LocalDateTime.now();
             Duration duration = Duration.between(begin, end);
-            long seconds = duration.getSeconds();
-            return seconds*1000;
+            long nanoseconds = duration.getNano();
+            return nanoseconds/1000000;
+             */
         }
 }
