@@ -37,7 +37,7 @@ public class Ex1Test{
                 index++;
             }
         }
-        int[] same = new int[index+1];
+        int[] same = new int[index]; //nao é index+1 porque ele é incrementado
         System.arraycopy(sameAux,0,same, 0, same.length); //same.length=index+1
         return same;
     }
