@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 /**
  *1. Criar um programa que permita efectuar as seguintes operações:
@@ -10,31 +9,43 @@ import java.util.Scanner;
  * comuns aos dois arrays.
  */
 
-public class Ex1 {
-    public static void main(String[] args){
-        Scanner input = new Scanner(System.in);
-        Ex1Test t = new Ex1Test(); // criar um objecto da classe que implementa os métodos.
-
-        //a
-        System.out.print("Número de inteiros a ler? ");
-        int total = input.nextInt();
-        System.out.println("Escreva os "+total+" números a adicionar ao array.");
-        int[] ints = new int[total];
-        for(int i=0; i<total; i++)  // for(int i=0; i < ints.length; i++)
-            ints[i] = input.nextInt();
-        //int[] array = t.array(total);
-        System.out.println("O menor número do array é: "+ t.getMin(ints));
-
-        //b
-        System.out.println("Digite os dois índices para determinar o array com os valores entre esses índices:");
-        int a = input.nextInt();
-        int b = input.nextInt();
-        int[] newints = t.arrayEntre(ints, a, b);
-        for(int i=0; i<newints.length; i++){
-            System.out.println("Posição: " + (i+1) + " = " +newints[i] +";");
+public class Ex1{
+    //a
+    public int getMin(int[] nums){  //sem static!!
+        int min=nums[0];
+        for(int i=0; i < nums.length; i++)
+            if(nums[i]<min) min=nums.length;
+        return min;
+    }
+    //b
+    public int[] arrayEntre(int[] arr, int a, int b){   //sem static!!
+        int[] newints = new int[b-a+1];
+        for(int i = 0; a<=b; i++,a++){
+            System.out.println("i: "+i+"\n");
+            newints[i]=arr[a];
         }
+        return newints;
+    }
+    //c
+    public boolean existValue(int a, int[] array, int len){
+        for(int i=0; i<len; i++){
+            if(a==array[i]) return true;
+        }
+        return false;
+    }
 
-        //c
-
+    public int[] comuns(int[] a1 , int[] a2) { //NÃO TESTADO
+        int len = a1.length > a2.length ? a2.length : a1.length; //nº max de comuns corresponde tamanho do menor array.
+        int[] sameAux = new int[len];
+        int index = 0;
+        for (int i = 0; i < a1.length; i++) {
+            if (existValue(a1[i], a2, a2.length) && !existValue(a1[i], sameAux, index)) {
+                sameAux[index] = a1[i];
+                index++;
+            }
+        }
+        int[] same = new int[index]; //nao é index+1 porque ele é incrementado
+        System.arraycopy(sameAux,0,same, 0, same.length); //same.length=index+1
+        return same;
     }
 }
