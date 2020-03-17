@@ -1,3 +1,5 @@
+import sun.reflect.annotation.AnnotationSupport;
+
 import javax.sound.midi.SysexMessage;
 import java.util.Scanner;
 
@@ -60,6 +62,37 @@ public class Ficha2_main {
         int idAluno = sc.nextInt();
         float media = f2.mediaAluno(idAluno-1, notasTurma);
         System.out.print("A média do aluno "+idAluno+" é: "+media);
+
+        //ALÍNEA D
+        System.out.print("\nDe que unidade curricular quer calcular a média (1-5)? ");
+        int idUC = sc.nextInt();
+        float media2 = f2.mediaUC(idUC-1, notasTurma);
+        System.out.print("A média das notas da unidade curricular "+idUC+" é: "+media2);
+
+        //ALÍNEA E
+        int notamax = f2.notaMaisAlta(notasTurma);
+        System.out.print("\nA nota mais alta a todas as unidades curriculares de todos os alunos é: "+notamax);
+
+        //ALÍNEA F
+        int notamin = f2.notaMaisBaixa(notasTurma);
+        System.out.println("\nA nota mais baixa a todas as unidades curriculares de todos os alunos é: "+notamin);
+
+        //ALÍNEA G
+        int j=1;
+        System.out.print("\nPretende ver as notas acima de que valor(Valores inteiros)? ");
+        int v = sc.nextInt();
+        int[] notasAcima = f2.notasAbove(notasTurma, v);
+        System.out.print("As notas maiores que "+v+" são: "+notasAcima[0]);
+        for(; j<notasAcima.length-1; j++) {
+            System.out.print(", " + notasAcima[j]);
+        }
+        System.out.print(", "+notasAcima[j]+".");
+
+        //ALÍNEA H
+        System.out.println("\n"+f2.stringNotas(notasTurma));
+
+        //ALÍNEA I
+        System.out.println("\nA UC com melhor média é a UC nº: "+f2.ucMelhorMedia(notasTurma));
     }
 
     public static void main(String[] args){
