@@ -95,14 +95,45 @@ public class Ficha2_main {
         System.out.println("\nA UC com melhor média é a UC nº: "+f2.ucMelhorMedia(notasTurma));
     }
 
+    public static void Ex4TestCall(){
+        //ALÍNEA A
+        Scanner sc = new Scanner(System.in);
+        Ex4 f4 = new Ex4();
+
+        System.out.println("\nQuantos inteiros que adicionar ao array?");
+        int n = sc.nextInt();
+        int[] ints = new ints[n];
+        System.out.println("Escreva os números que pretende adicionar ao array: ");
+        for(int i=0; i<n; i++){
+            ints[i] = sc.nextInt();
+        }
+        ints = f4.ordenarArray(ints);
+        for(int i : ints)
+            System.out.println("ints[i] = "+ints[i]);
+
+        //ALÍNEA B
+        System.out.print("Qual o valor a procurar no array? ");
+        int x = sc.nextInt();
+        int result = binaryseach(ints, 0, n-1, x);
+        switch(result){
+            case -1:
+                System.out.println("O valor inserido não existe no array.");
+            default:
+                System.out.println("O valor está presente no indíce "+result+" do array.");
+        }
+    }
+
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Que exercício pretende executar(1-2)? ");
+        System.out.print("Que exercício pretende executar(1, 2 ou 4)? ");
         int ex = sc.nextInt();
         switch (ex){
             case 1: Ex1TestCall();
                 break;
             case 2: Ex2TestCall();
+                break;
+            case 4: Ex4TestCall();
                 break;
         }
     }
