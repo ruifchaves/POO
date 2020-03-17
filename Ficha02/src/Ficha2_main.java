@@ -1,3 +1,4 @@
+import javax.sound.midi.SysexMessage;
 import java.util.Scanner;
 
 
@@ -35,18 +36,30 @@ public class Ficha2_main {
         int[][] notasTurma = new int[5][5];
 
         //ALÍNEA A (tem que ser aqui porque os inputs e outputs têm que estar na main)
-        int i=1;
-        for(int[] aluno: notasTurma){
-            System.out.println("Digite as 5 notas do aluno "+(i++)+": ");
-            for(int nota: aluno){
-                nota = sc.nextInt();
-            }
+        int aluno=1;
+        for(int x=0; x<notasTurma.length; x++) {
+            System.out.println("Digite as 5 notas do aluno " + (aluno++) + ": ");
+            for (int i = 0; i < notasTurma[0].length; i++)
+                notasTurma[x][i] = sc.nextInt();
         }
+        /* NAO FUNCIONA, Só adiciona a cada notasTurma[i][0]
+        for(int[] aluno: notasTurma){
+            for(int nota: aluno){
+                aluno[nota] = sc.nextInt();
+            }
+        */
 
         //ALÍNEA B
-        System.out.print("Pretende somar as notas de que unidade curricular(1-5)? ");
+        System.out.print("\nPretende somar as notas de que unidade curricular(1-5)? ");
         int uniCurr = sc.nextInt();
-        f2.somaNotas(uniCurr-1, notasTurma);
+        int soma = f2.somaNotas(uniCurr-1, notasTurma);
+        System.out.println("A soma das notas é: "+soma);
+
+        //ALÍNEA C
+        System.out.print("\nDe que aluno quer calcular a média (1-5)? ");
+        int idAluno = sc.nextInt();
+        float media = f2.mediaAluno(idAluno-1, notasTurma);
+        System.out.print("A média do aluno "+idAluno+" é: "+media);
     }
 
     public static void main(String[] args){

@@ -21,10 +21,20 @@
 public class Ex2 {
     //a
 
+    //b
     public int somaNotas(int x ,int[][] notasTurma){
         int soma=0;
         for(int i=0; i<5; i++)
             soma += notasTurma[i][x];
         return soma;
+    }
+    //c
+    public float mediaAluno(int al, int[][] notasTurma){ //era suposto so passar como argumento o array com as notas desse aluno?
+        float soma = 0;
+        int i=0;
+        for (; i < notasTurma[al].length; i++) {
+            soma += notasTurma[al][i];
+        }
+        return soma/i;
     }
 }
