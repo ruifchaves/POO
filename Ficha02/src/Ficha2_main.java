@@ -1,6 +1,7 @@
 import sun.reflect.annotation.AnnotationSupport;
 
 import javax.sound.midi.SysexMessage;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -102,24 +103,28 @@ public class Ficha2_main {
 
         System.out.println("\nQuantos inteiros que adicionar ao array?");
         int n = sc.nextInt();
-        int[] ints = new ints[n];
+        int[] ints = new int[n];
         System.out.println("Escreva os números que pretende adicionar ao array: ");
         for(int i=0; i<n; i++){
             ints[i] = sc.nextInt();
         }
         ints = f4.ordenarArray(ints);
-        for(int i : ints)
-            System.out.println("ints[i] = "+ints[i]);
+        /*for(int m=0; m<ints.length; m++) {
+            System.out.println("ints[i] = " + ints[m]);
+        }*/
+        System.out.println(Arrays.toString(ints)); //mais simples que o de cima. import java.util.Arrays
 
         //ALÍNEA B
         System.out.print("Qual o valor a procurar no array? ");
         int x = sc.nextInt();
-        int result = binaryseach(ints, 0, n-1, x);
+        int result = f4.binarysearch(ints, 0, n-1, x);
         switch(result){
             case -1:
                 System.out.println("O valor inserido não existe no array.");
+                break;
             default:
                 System.out.println("O valor está presente no indíce "+result+" do array.");
+                break;
         }
     }
 
