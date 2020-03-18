@@ -1,6 +1,8 @@
 import sun.reflect.annotation.AnnotationSupport;
 
 import javax.sound.midi.SysexMessage;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -128,15 +130,38 @@ public class Ficha2_main {
         }
     }
 
+    public static void Ex3TestCall(){
+        Scanner sc = new Scanner(System.in);
+        Dates ld = new Dates();
+
+        //ALÍNEA A
+        System.out.println("\nDigita o ano, o mês e o dia de uma data: ");
+        int ano = sc.nextInt(); int mes = sc.nextInt(); int dia = sc.nextInt();
+        System.out.println("\nA data vai ser adicionada ao array.");
+        LocalDate date = LocalDate.of(ano,mes,dia);
+        ld.insereData(date);
+        //System.out.println("Dates: "+ld.toString());
+
+        //ALÍNEA B
+        System.out.println("\nA data dada vai ser comparada com as outras do array.");
+        LocalDate maisProx = ld.dataMaisProxima(date);
+        maisProx.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        System.out.println("\nA data do array que está mais próxima é: "+maisProx);
+
+        //ALÍNEA C
+        System.out.println("\nDatas: "+ld.toString());
+    }
 
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Que exercício pretende executar(1, 2 ou 4)? ");
+        System.out.print("Que exercício pretende executar(1-4)? ");
         int ex = sc.nextInt();
         switch (ex){
             case 1: Ex1TestCall();
                 break;
             case 2: Ex2TestCall();
+                break;
+            case 3: Ex3TestCall();
                 break;
             case 4: Ex4TestCall();
                 break;
