@@ -101,12 +101,12 @@ public class EncEficiente {
     }
 
     public String toString() {
-        return "ENCOMENDA: \nNome de Cliente= "+ nomeCli +
-                "; \nNif= " + nif +
-                "; \nMorada= " + morada +
-                "; \nNúmero da Encomenda= " + numEnc +
-                "; \nData= " + data +
-                "; \nLinhas= " + linhas.toString() + ';';
+        return "ENCOMENDA: \n   -Nome de Cliente= "+ nomeCli +
+                "; \n   -Nif= " + nif +
+                "; \n   -Morada= " + morada +
+                "; \n   -Número da Encomenda= " + numEnc +
+                "; \n   -Data= " + data +
+                "; \n   -Linhas= " + linhas.toString() + ';';
     }
 
     /**
@@ -147,7 +147,7 @@ public class EncEficiente {
     /**
      * v. método que determina se um produto vai ser encomendado.
      */
-    public boolean exiteProdutoEncomenda(String refProduto){
+    public boolean existeProdutoEncomenda(String refProduto){
         boolean e = false;
         for(int i=0; !e && i<linhas.size(); i++)
             if(linhas.get(i).getReferencia().equals(refProduto)) e = true;
