@@ -79,6 +79,7 @@ public class Circulo {
 
     /**
      * métodos complementares
+     * equals(), toString() e clone()
      */
     public boolean equals(Object o){
         if(this == o)
@@ -89,6 +90,12 @@ public class Circulo {
         return (this.x == p.getX() && this.y == p.getY() && this.raio == p.getRaio());
     }
 
+    public String toString(){
+        return "Círculo -> X: "+this.x+"; Y: "+this.y+"; Raio: "+this.raio;
+    }
 
+    public Circulo clone(){
+        return new Circulo(this);
+    }
 }
 
