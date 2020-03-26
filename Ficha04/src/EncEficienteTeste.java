@@ -1,11 +1,6 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
-/**
- * Escreva a descrição da classe Main aqui.
- * 
- * @author (seu nome) 
- * @version (número de versão ou data)
- */
+
 public class EncEficienteTeste{
     public static void main(String[] args){
         LinhaEncomenda le = new LinhaEncomenda("6593431", "Telemóvel",

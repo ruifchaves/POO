@@ -57,7 +57,10 @@ public class EncEficiente {
         return this.data;
     }
     public ArrayList<LinhaEncomenda> getLinhas() {
-        return this.linhas;
+        ArrayList<LinhaEncomenda> copia = new ArrayList<>();
+        for(LinhaEncomenda s : this.linhas)
+            copia.add(s);
+        return copia;
     }
 
     public void setNomeCli(String nomeCli) {
@@ -94,7 +97,7 @@ public class EncEficiente {
                 morada==p.getMorada() &&
                 numEnc==p.getNumEnc() &&
                 data==p.getData() &&
-                linhas==p.getLinhas());
+                this.linhas.equals(p.getLinhas()));
         // return nomeCli.equals(p.getNomeCli()) && nif == p.getNif() &&
         //         morada.equals(p.getMorada()) && numEnc == p.getNumEnc() &&
         //         data.equals(p.getData()) && linhas.equals(p.getLinhas());

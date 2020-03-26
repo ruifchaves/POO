@@ -92,6 +92,7 @@ public class Circulo {
 
     public String toString(){
         return "Círculo -> X: "+this.x+"; Y: "+this.y+"; Raio: "+this.raio;
+
     }
 
     public Circulo clone(){
