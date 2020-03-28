@@ -80,8 +80,8 @@ public class FBPost {
         this.likes = likes;
     }
     public void setComments(List<String> coms){
-        //this.comments = this.comments.stream(String::clone).collect(Collectors.toList());       não fazer isto
-        //this.comments = this.comments.stream().map(l->l.clone).collect(Collectors.toList());    não fazer isto
+        //this.comments = this.comments.stream().map(String::clone).collect(Collectors.toList());   não fazer isto
+        //this.comments = this.comments.stream().map(l->l.clone()).collect(Collectors.toList());      não fazer isto
         this.comments = new ArrayList<>();
         //comentarios.forEach(s -> {this.comentarios.add(s);});
         //OU
@@ -106,7 +106,7 @@ public class FBPost {
     }
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("ID: ").append(id).append("\nUsername: ").append(user)
+                sb.append("\nID: ").append(id).append("\nUsername: ").append(user)
                 .append("\nData: ").append(postTime).append("\nPost: ").append(content)
                 .append("\nLikes: ").append(likes)
                 .append("\nComentarios: ").append(comments.toString());  //toString
