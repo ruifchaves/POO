@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-public class EncEficienteTeste{
+public class EncEficienteTeste extends EncEficiente {
     public static void main(String[] args){
         LinhaEncomenda le = new LinhaEncomenda("6593431", "Telemóvel",
                 13, 300, 0.23, 0.20);

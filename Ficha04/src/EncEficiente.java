@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-public class EncEficiente {
+public class EncEficiente extends LinhaEncomenda {
     private String nomeCli;
     private int nif;
     private String morada;
@@ -23,13 +23,13 @@ public class EncEficiente {
         this.linhas = new ArrayList<>();
     }
 
-    public EncEficiente(String nomeCli, int nif, String morada, int numEnc,LocalDate data, List<LinhaEncomenda> linhasEnc) {
+    public EncEficiente(String nomeCli, int nif, String morada, int numEnc,LocalDate data, ArrayList<LinhaEncomenda> linhasEnc) {
         this.nomeCli = nomeCli;
         this.nif = nif;
         this.morada = morada;
         this.numEnc = numEnc;
         this.data = data;
-        setEnc(linhasEnc);
+        this.setEnc(linhasEnc); //preferível fazer assim! e não com um ciclo for
     }
 
     public EncEficiente(EncEficiente c){
@@ -94,9 +94,9 @@ public class EncEficiente {
         EncEficiente p = (EncEficiente) o;
         return (nomeCli==p.getNomeCli() &&
                 nif==p.getNif() &&
-                morada==p.getMorada() &&
+                morada.equals(p.getMorada()) && //é uma string por isso usar equals, senão estamos a comparar as referências
                 numEnc==p.getNumEnc() &&
-                data==p.getData() &&
+                data.equals(p.getData()) && //é um objeto por isso usar equals
                 this.linhas.equals(p.getLinhas()));
         // return nomeCli.equals(p.getNomeCli()) && nif == p.getNif() &&
         //         morada.equals(p.getMorada()) && numEnc == p.getNumEnc() &&
@@ -150,12 +150,31 @@ public class EncEficiente {
     /**
      * v. método que determina se um produto vai ser encomendado.
      */
+    //devia ter usado iteradores, usar isto é uma má pratica
+    //public boolean existeProdutoEncomenda(String refProduto){
+    //    boolean e = false;
+    //    for(int i=0; !e && i<linhas.size(); i++)
+    //        if(linhas.get(i).getReferencia().equals(refProduto)) e = true;
+    //    return e;
+    //}
+
+    //melhor implementações: 1º iterador interno e 2º iterador externo
     public boolean existeProdutoEncomenda(String refProduto){
-        boolean e = false;
-        for(int i=0; !e && i<linhas.size(); i++)
-            if(linhas.get(i).getReferencia().equals(refProduto)) e = true;
-        return e;
+        return this.linhas.stream().filter(l->l.getReferencia().equals(refProduto)).count() != 0;
+        //OU
+        /**
+         *  boolean enc = false;
+         *  Iterator<LinhaEncomenda> it = this.linhas.iterator();
+         *  while(it.hasNext() & !enc){
+         *      res = refProduto.equals(it.next().getReferencia());
+         *  }
+         *  return enc;
+         */
+
     }
+
+
+
 
     /**
      * vi. método que adiciona uma nova linha de encomenda
