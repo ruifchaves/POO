@@ -15,8 +15,8 @@ public class FBFeed {
     public FBFeed(List<FBPost> posts) {
         this.setPosts(posts);
     }
-    public FBFeed(FBFeed2 feed){
-        this.setPosts(feed.getPosts());
+    public FBFeed(FBFeed posts){
+        this.setPosts(posts.getPosts());
     }
 
     public List<FBPost> getPosts() {
@@ -40,11 +40,11 @@ public class FBFeed {
     public boolean equals(Object o) {
         if(o==this) return true;
         if(o==null || this.getClass()!=o.getClass()) return false;
-        FBFeed2 j = (FBFeed2) o;
+        FBFeed j = (FBFeed) o;
         return this.posts.equals(j.getPosts());
     }
-    public FBFeed2 clone(){
-        return new FBFeed2(this);
+    public FBFeed clone(){
+        return new FBFeed(this);
     }
     public String toString(){
         return "FEED: "+
@@ -111,7 +111,7 @@ public class FBFeed {
         getPost(post.getId()).setLikes(post.getLikes()+1);
     }
 
-    /** vii - Adicionar um like a um post
+    /** viii - Adicionar um like a um post
      */
     public void like(int postid){
         FBPost aux = getPost(postid);
