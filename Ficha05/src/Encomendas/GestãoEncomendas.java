@@ -38,6 +38,7 @@ public class GestãoEncomendas {
     }
 
     public void setEncomendas(Map<Integer, EncEficiente> enc) {
+        this.encomendas = new HashMap<>();
         for (Map.Entry<Integer, EncEficiente> en : enc.entrySet())
             this.encomendas.put(en.getKey(), en.getValue().clone());
     }
@@ -58,7 +59,7 @@ public class GestãoEncomendas {
 
     public boolean equals(Object o){
         if(o == this) return true;
-        if((o != null) || (o.getClass() != this.getClass())) return false;
+        if((o == null) || (o.getClass() != this.getClass())) return false;
         GestãoEncomendas p = (GestãoEncomendas) o;
         return this.encomendas.equals(p.getEncomendas());
     }
