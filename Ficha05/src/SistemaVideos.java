@@ -54,6 +54,8 @@ public class SistemaVideos {
         return sb.append("---------------------").toString();
     }
     public int compareTo(SistemaVideos sv){ //TODO
+        //compareTo não definido para Map
+        //return this.mapVid.compareTo(sv.getMapVid());
         return 1;
     }
 
