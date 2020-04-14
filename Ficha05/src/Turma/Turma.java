@@ -1,4 +1,4 @@
-
+package Turma;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -109,6 +109,7 @@ public class Turma {
                 .append(this.alunos);
         return sb.toString();
     }
+
 
     public Turma clone() {
         return new Turma(this);
