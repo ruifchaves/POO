@@ -97,15 +97,15 @@ public class Veiculo {
     }
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Veículo: ")
-                .append("  matricula: ").append(matricula).append('\n')
-                .append("  marca: ").append(marca).append('\n')
-                .append("  modelo: ").append(modelo).append('\n')
-                .append("  ano de construção: ").append(anoConstrucao).append('\n')
-                .append("  velocidade média por km: ").append(avgSpeedKm).append('\n')
-                .append("  preço teórico base por km: ").append(avgPriceKm).append('\n')
-                .append("  rating: ").append(rating).append('\n')
-                .append("  kms totais realizados: ").append(totalKms).append('\n');
+        sb.append("\nVeículo: ")
+                .append("  matricula: ").append(matricula)
+                .append(", marca: ").append(marca)
+                .append(", modelo: ").append(modelo)
+                .append(", ano de construção: ").append(anoConstrucao)
+                .append(", velocidade média por km: ").append(avgSpeedKm)
+                .append(", preço teórico base por km: ").append(avgPriceKm)
+                .append(", rating: ").append(rating)
+                .append(", kms totais realizados: ").append(totalKms).append('\n');
         return sb.toString();
     }
     public boolean equals(Object o){

@@ -39,7 +39,7 @@ public class VeiculoPremium extends Veiculo{
     }
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("VeiculoPremium: ")
+        sb.append("VeiculoPremium: ") //nao usar o super mas sim os gets definidos em veiculo
                 .append(super.toString())
                 .append("  taxa veiculo premium: ").append(taxaLuxo).append('\n');
         return sb.toString();
