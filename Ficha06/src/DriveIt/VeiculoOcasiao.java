@@ -4,7 +4,6 @@ import java.time.Year;
 
 public class VeiculoOcasiao extends Veiculo{
     private boolean promocao;
-    //final String tipo = "VeiculoOcasiao";
 
     public VeiculoOcasiao(){
         super(); //invocar construtor da super classe
@@ -25,9 +24,6 @@ public class VeiculoOcasiao extends Veiculo{
     public void setPromocao(boolean boo){
         promocao = boo;
     }
-    //public String getTipo(){
-    //    return tipo;
-    //}
 
 
     public VeiculoOcasiao clone(){
@@ -38,9 +34,10 @@ public class VeiculoOcasiao extends Veiculo{
         VeiculoOcasiao vo = (VeiculoOcasiao) o;
         return promocao==vo.getPromocao(); // added fields are tested
     } //https://rules.sonarsource.com/java/tag/suspicious/RSPEC-2160
+
     public String toString(){ //nao usar o .append(super.toString()); mas sim os gets definidos na super class
         StringBuilder sb = new StringBuilder();
-        sb.append("\nVeículo: ")
+        sb.append("\nVeículoOcasiao: ")
                 .append("  matricula: ").append(getMatricula())
                 .append(", marca: ").append(getMarca())
                 .append(", modelo: ").append(getMarca())
@@ -49,8 +46,8 @@ public class VeiculoOcasiao extends Veiculo{
                 .append(", preço teórico base por km: ").append(getAvgPriceKm())
                 .append(", rating: ").append(getRating())
                 .append(", kms totais realizados: ").append(getTotalKms()).append('\n');
-        if(promocao) sb.append(", Em promoção!\n");
-        else sb.append(", Sem promoção!\n");
-        return sb.toString();
+        if(promocao) sb.append("EM PROMOCAO!"); //como chamar de DriveIt caso queira mostrar o novo valor?
+        else sb.append("SEM PROMOCAO!");
+        return sb.append('\n').toString();
     }
 }

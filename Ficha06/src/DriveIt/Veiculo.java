@@ -105,8 +105,8 @@ public class Veiculo {
                 .append(", velocidade média por km: ").append(avgSpeedKm)
                 .append(", preço teórico base por km: ").append(avgPriceKm)
                 .append(", rating: ").append(rating)
-                .append(", kms totais realizados: ").append(totalKms).append('\n');
-        return sb.toString();
+                .append(", kms totais realizados: ").append(totalKms);
+        return sb.append('\n').toString();
     }
     public boolean equals(Object o){
         if(o == this) return true;

@@ -4,7 +4,6 @@ import java.time.Year;
 
 public class VeiculoPremium extends Veiculo{
     private double taxaLuxo;
-    final String tipo = "VeiculoPremium";
 
     public VeiculoPremium(){
         super();
@@ -25,9 +24,6 @@ public class VeiculoPremium extends Veiculo{
     public void setTaxaLuxo(double newTax){
         taxaLuxo = newTax;
     }
-    public String getTipo(){
-        return tipo;
-    }
 
     public boolean equals(Object o){
         if(!super.equals(o)) return false;
@@ -37,11 +33,19 @@ public class VeiculoPremium extends Veiculo{
     public VeiculoPremium clone(){
         return new VeiculoPremium(this);
     }
-    public String toString(){
+
+    public String toString(){ //nao usar o .append(super.toString()); mas sim os gets definidos na super class
         StringBuilder sb = new StringBuilder();
-        sb.append("VeiculoPremium: ") //nao usar o super mas sim os gets definidos em veiculo
-                .append(super.toString())
-                .append("  taxa veiculo premium: ").append(taxaLuxo).append('\n');
-        return sb.toString();
+        sb.append("\nVeículoPremium: ")
+                .append("  matricula: ").append(getMatricula())
+                .append(", marca: ").append(getMarca())
+                .append(", modelo: ").append(getMarca())
+                .append(", ano de construção: ").append(getAnoConstrucao())
+                .append(", velocidade média por km: ").append(getAvgSpeedKm())
+                .append(", preço teórico base por km: ").append(getAvgPriceKm())
+                .append(", rating: ").append(getRating())
+                .append(", kms totais realizados: ").append(getTotalKms())
+                .append(", taxa de luxo: ").append(taxaLuxo);
+        return sb.append('\n').toString();
     }
 }
