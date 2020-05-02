@@ -6,18 +6,20 @@ import java.util.HashSet;
 
 public class DriveItTest {
     public static void main(String[] args){
-        Veiculo b = new Veiculo("2", "Ferrari", "yo", Year.of(2020), 100.0, 4.0, 7.9, 100000);
         Veiculo d = new Veiculo("4", "Corvette", "70s", Year.of(2020), 100.0, 4.0, 7.9, 5000);
         VeiculoOcasiao e = new VeiculoOcasiao("5", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 1000000, true);
         VeiculoOcasiao f = new VeiculoOcasiao("6", "McLaren", "man", Year.of(2020), 100.0, 4.0, 7.9, 20000, false);
-        VeiculoPremium j = new VeiculoPremium("7", "McLaren", "man", Year.of(2020), 100.0, 4.0, 7.9, 570505, 5.5);
+        VeiculoPremium j = new VeiculoPremium("7", "Fiat", "man", Year.of(2020), 100.0, 4.0, 7.9, 570505, 5.5);
+        AutocarroInteligente k = new AutocarroInteligente("8", "Ford", "man", Year.of(2020), 100.0, 4.0, 7.9, 656461, 50);
+        AutocarroInteligente l = new AutocarroInteligente("9", "Aston Martin", "007", Year.of(2020), 100.0, 4.0, 7.9, 164585, 75);
 
         DriveIt di = new DriveIt();
-        di.adiciona(b);
         di.adiciona(d);
         di.adiciona(e);
         di.adiciona(f);
         di.adiciona(j);
+        di.adiciona(k);
+        di.adiciona(l);
 
 
         System.out.println("\n--DriveIt Inicial:\n"+di.toString());
@@ -71,7 +73,7 @@ public class DriveItTest {
         di.classificarVeiculo("7", 10);
         System.out.println(di.getVeiculo("7"));
 
-        //m
+        //m TODO testar valor com normal, VeiculoOcasiao e ambos Autocarros com ocupacao dif
         System.out.printf("\n--CustoReal do Veiculo 7: %.2f\n\n", di.custoRealKm("7"));
 
         //n
