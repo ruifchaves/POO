@@ -3,7 +3,7 @@ package DriveIt;
 import java.time.Year;
 
 public class AutocarroInteligente extends Veiculo {
-    private int ocupacaoPercent;
+    private int ocupacaoPercent; //from 0 to 100
 
     public AutocarroInteligente(){
         super();
@@ -25,8 +25,10 @@ public class AutocarroInteligente extends Veiculo {
         ocupacaoPercent = newOcup;
     }
 
-    public boolean equals(){
-
+    public boolean equals(Object o){
+        if(!super.equals(o)) return false;
+        AutocarroInteligente ai = (AutocarroInteligente) o;
+        return ocupacaoPercent == ai.getOcupacaoPercent();
     }
     public AutocarroInteligente clone(){
         return new AutocarroInteligente(this);

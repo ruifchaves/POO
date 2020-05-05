@@ -105,9 +105,9 @@ public class DriveIt {
         return carrosOrd;
     }
 
-    //h -> nao ideal inicializar assim lowestprice.
+    //h -> nao ideal inicializar assim lowestprice e x
     public Veiculo veiculoMaisBarato(){
-        Veiculo x = new Veiculo();
+        Veiculo x = (Veiculo) veics.values().toArray()[0];
         double lowestPrice = custoRealKm((String) veics.keySet().toArray()[0]); //https://www.javacodeexamples.com/java-hashmap-get-first-key-value-without-iterating-example/2290
         for(Map.Entry<String, Veiculo> v : veics.entrySet()){
             if(custoRealKm(v.getKey())<lowestPrice){
@@ -155,6 +155,10 @@ public class DriveIt {
         int nKms = v.getTotalKms();
         double ret = (ptb * nKms) / 0.9;
         if (v instanceof VeiculoOcasiao && ((VeiculoOcasiao) v).getPromocao() == true) ret /= 1.25;
+        if (v instanceof AutocarroInteligente){
+                if (((AutocarroInteligente) v).getOcupacaoPercent()<61) ret*=0.5;
+                else ret*=0.25;
+        }
         return ret;
     }
 

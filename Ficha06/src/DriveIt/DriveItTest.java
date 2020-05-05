@@ -11,7 +11,7 @@ public class DriveItTest {
         VeiculoOcasiao f = new VeiculoOcasiao("6", "McLaren", "man", Year.of(2020), 100.0, 4.0, 7.9, 20000, false);
         VeiculoPremium j = new VeiculoPremium("7", "Fiat", "man", Year.of(2020), 100.0, 4.0, 7.9, 570505, 5.5);
         AutocarroInteligente k = new AutocarroInteligente("8", "Ford", "man", Year.of(2020), 100.0, 4.0, 7.9, 656461, 50);
-        AutocarroInteligente l = new AutocarroInteligente("9", "Aston Martin", "007", Year.of(2020), 100.0, 4.0, 7.9, 164585, 75);
+        AutocarroInteligente l = new AutocarroInteligente("9", "Aston Martin", "007", Year.of(2020), 100.0, 4.0, 7.9, 656461, 75);
 
         DriveIt di = new DriveIt();
         di.adiciona(d);
@@ -36,7 +36,7 @@ public class DriveItTest {
         System.out.println("\n--Quantos veículos do tipo VeiculoOcasiao: "+di.quantosT("VeiculoOcasiao"));
 
         //d
-        System.out.println("\n--Veículo 2: "+di.getVeiculo("2").toString());
+        System.out.println("\n--Veículo 4: "+di.getVeiculo("4").toString());
 
         //e adiciona - usado em cima
 
@@ -55,11 +55,11 @@ public class DriveItTest {
         System.out.println("\n--Veiculo menos utilizado (stream min): "+di.veiculoMenosUtilizado().toString());
 
         //j
-        Veiculo k = new Veiculo("8", "Corvette", "70s", Year.of(2020), 100.0, 4.0, 7.9, 100000);
-        VeiculoOcasiao l = new VeiculoOcasiao("9", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 100000, true);
-        VeiculoPremium m = new VeiculoPremium("10", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 100000, 2.0);
+        Veiculo m = new Veiculo("8", "Corvette", "70s", Year.of(2020), 100.0, 4.0, 7.9, 100000);
+        VeiculoOcasiao n = new VeiculoOcasiao("9", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 100000, true);
+        VeiculoPremium o = new VeiculoPremium("10", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 100000, 2.0);
         Set<Veiculo> test = new HashSet<>();
-        test.add(k); test.add(l); test.add(m);
+        test.add(m); test.add(n); test.add(o);
         di.adiciona(test);
         System.out.println("\n--DriveIt com Veics de set adicionados:\n"+di.toString());
 
@@ -74,7 +74,10 @@ public class DriveItTest {
         System.out.println(di.getVeiculo("7"));
 
         //m TODO testar valor com normal, VeiculoOcasiao e ambos Autocarros com ocupacao dif
-        System.out.printf("\n--CustoReal do Veiculo 7: %.2f\n\n", di.custoRealKm("7"));
+        System.out.printf("\n--CustoReal do Veiculo 7: %.2f", di.custoRealKm("7"));
+        System.out.printf("\n--CustoReal do Veiculo 8: %.2f", di.custoRealKm("8"));
+        System.out.printf("\n--CustoReal do Veiculo 9: %.2f\n\n", di.custoRealKm("9"));
+        //os valores dos custos de 8 e 9 devem ser diferentes pq apenas diferem na ocupacao
 
         //n
         di.alteraPromocao(false);
