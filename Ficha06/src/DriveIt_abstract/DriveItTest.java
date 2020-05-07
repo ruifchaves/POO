@@ -1,4 +1,4 @@
-package DriveIt;
+package DriveIt_abstract;
 
 import java.time.Year;
 import java.util.Set;
@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class DriveItTest {
     public static void main(String[] args){
-        Veiculo d = new Veiculo("4", "Corvette", "70s", Year.of(2020), 100.0, 4.0, 7.9, 5000);
+        VeiculoNormal d = new VeiculoNormal("4", "Corvette", "70s", Year.of(2020), 100.0, 4.0, 7.9, 5000);
         VeiculoOcasiao e = new VeiculoOcasiao("5", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 1000000, true);
         VeiculoOcasiao f = new VeiculoOcasiao("6", "McLaren", "man", Year.of(2020), 100.0, 4.0, 7.9, 20000, false);
         VeiculoPremium j = new VeiculoPremium("7", "Fiat", "man", Year.of(2020), 100.0, 4.0, 7.9, 570505, 5.5);
@@ -21,7 +21,8 @@ public class DriveItTest {
         di.adiciona(k);
         di.adiciona(l);
 
-
+        //FASE 1
+        System.out.println("------------Fase 1------------:");
         System.out.println("\n--DriveIt Inicial:\n"+di.toString());
         //a
         System.out.print("\n--Existe o veículo 1?: "+di.existeVeiculo("1"));
@@ -43,8 +44,10 @@ public class DriveItTest {
         //f
         System.out.println("\n--Lista Veiculos:\n"+di.getVeiculos().toString());
 
-        //g
+        //g v1
         System.out.println("\n--Lista Veiculos Ordenados Descres. Custo Real:\n"+di.veiculosOrdenadosCusto().toString());
+        //g v2
+        System.out.println("\n--Lista Veiculos Ordenados Descres. Custo Real, Stream:\n"+di.veiculosOrdenadosCustoStream().toString());
 
         //h
         Veiculo x = di.veiculoMaisBarato();
@@ -55,7 +58,7 @@ public class DriveItTest {
         System.out.println("\n--Veiculo menos utilizado (stream min): "+di.veiculoMenosUtilizado().toString());
 
         //j
-        Veiculo m = new Veiculo("8", "Corvette", "70s", Year.of(2020), 100.0, 4.0, 7.9, 100000);
+        VeiculoNormal m = new VeiculoNormal("8", "Corvette", "70s", Year.of(2020), 100.0, 4.0, 7.9, 100000);
         VeiculoOcasiao n = new VeiculoOcasiao("9", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 100000, true);
         VeiculoPremium o = new VeiculoPremium("10", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 100000, 2.0);
         Set<Veiculo> test = new HashSet<>();
@@ -90,5 +93,17 @@ public class DriveItTest {
         di.terminaPromocao();
         System.out.println("\n--Todos veics ocasiao sem promocao:\n"+di.toString());
 
+
+
+        //FASE 2
+        System.out.println("------------Fase 2------------:");
+        //a v1
+        System.out.println("\n--Set veics ordenados, ordem natural:\n"+di.ordenarVeiculos().toString());
+        //a v2
+        System.out.println("\n--Set veics ordenados Stream, ordem natural:\n"+di.ordenarVeiculosStream().toString());
+        //b
+        System.out.println("\n--List veics ordenados, ordem natural:\n"+di.ordenarVeiculosList().toString());
+        //c
+        //System.out.println("\n--Set veics ordenados com comparator dado:\n"+di.ordenarVeiculosStream().toString());
     }
 }
