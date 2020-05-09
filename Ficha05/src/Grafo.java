@@ -49,30 +49,94 @@ public class Grafo {
         //se fizessemos isto com forEach no teste íamos ser descontados. Tal como se saíssemos de um ciclo for ou forEach com um return.
     }
 
-
+    /**
+     * Implementação do haCaminho
+     */
     public boolean haCaminho(Integer vOrig, Integer vDest){
         return haCaminho(vOrig, vDest, new HashSet<>()); //HashSet corresponde se já existiu
     }
-
     public boolean haCaminho(Integer vOrig, Integer vDest, Set<Integer> visitados){
         //caminhar da origem até chegar ao destino
-        if(vOrig == vDest) return true;
-        if(!this.adj.containsKey(vOrig) || visitados.contains(vOrig))
-            return false; //se nao existir o nodo ou se já visitei, estou em loop e dou return false.
-
-        //usar um iterador pq basta ver se há um caminho.
-        Iterator<Integer> it = this.adj.get(vOrig).iterator();
-        boolean hac = false;
-        visitados.add(vOrig);
-        while(it.hasNext() && !hac){
-            hac = haCaminho(it.next(), vDest, visitados);
+        boolean hac;
+        if(vOrig == vDest) hac = true;
+        else if (!this.adj.containsKey(vOrig) || visitados.contains(vOrig))
+                hac = false; //se nao existir o nodo ou se já visitei, estou em loop e dou return false.
+            else {
+                //usar um iterador pq basta ver se há um caminho.
+                Iterator<Integer> it = this.adj.get(vOrig).iterator();
+                hac = false;
+                visitados.add(vOrig);
+                while(it.hasNext() && !hac){
+                hac = haCaminho(it.next(), vDest, visitados);
+            }
         }
         return hac;
     }
 
+    /**
+     * Implementação do getCaminho
+     */
+    public List<Integer> getCaminho(Integer vOrig, Integer vDest){
+        return getCaminho(vOrig, vDest, new ArrayList<>());
+    }
+    public List<Integer> getCaminho(Integer vOrig, Integer vDest, List<Integer> visitados) {
+        List<Integer> res = null;
+        if (vOrig.equals(vDest)) {
+            visitados.add(vOrig);
+            res = visitados;
+        } else if (!adj.containsKey(vOrig) || visitados.contains(vOrig))
+            res = null;
+        else {
+            Iterator<Integer> i = adj.get(vOrig).iterator();
+            visitados.add(vOrig);
+            while (i.hasNext() && res == null)
+                res = getCaminho(i.next(), vDest, new ArrayList<>(visitados));
+        }
+        return res;
+    }
 
-    public int size() //TODO
-    public List<Integer> getCaminho(Integer vOrig, Integer vDest)
-    public Set<Map.Entry<Integer, Integer>> fanIn(Integer v)
-    public boolean subGrafo(Grafo g)
+    /**
+     * Implementação do getCaminho utilizando o algoritmo do Dijkstra
+     */
+    public List<Integer> getCaminhoDSP(Integer vOrig, Integer vDest) {
+        Set<Integer> vertex = new HashSet<>();
+        Map<Integer, Integer> dist = new HashMap<>();
+        Map<Integer, Integer> prev = new HashMap<>();
+        for (Integer v : adj.keySet()) {
+            dist.put(v, Integer.MAX_VALUE);
+            vertex.add(v);
+        }
+        dist.put(vOrig, 0);
+
+        boolean found = false;
+        while (!vertex.isEmpty() && !found) {
+            Integer u = vertex.stream().sorted((v1, v2) -> dist.get(v1) - dist.get(v2))
+                    .findFirst().get(); //certo??
+            vertex.remove(u);
+            found = (u == vDest);
+            if (!found) {
+                for (Integer v : adj.get(u)) {
+                    int alt = dist.get(u) + 1;
+                    if (alt < dist.get(v)) {
+                        dist.put(v, alt);
+                        prev.put(v, u);
+                    }
+                }
+            }
+        }
+
+        List<Integer> res = new ArrayList<>();
+        Integer u = vDest;
+        if (prev.containsKey(u) || u == vOrig) {
+            while (prev.containsKey((u))) {
+                res.add(0, u);
+                u = prev.get(u);
+            }
+        }
+        return res;
+    }
+
+    //public int size()
+    //public Set<Map.Entry<Integer, Integer>> fanIn(Integer v)
+    //public boolean subGrafo(Grafo g)
 }

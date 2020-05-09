@@ -228,6 +228,13 @@ public class DriveIt {
         ordem.put(c,cp);
     }
 
+    public int compare1(Veiculo a, Veiculo b) { //order by class name
+        return a.getClass().getSimpleName().compareTo(b.getClass().getSimpleName());
+    }
+    public int compare2(Veiculo a, Veiculo b){ //crescente total kms
+        return a.getTotalKms()-b.getTotalKms();
+    }
+
     //e
     public Iterator<Veiculo> ordenarVeiculo(String criterio){
         Set<Veiculo> s = new TreeSet<>(ordem.get(criterio));
