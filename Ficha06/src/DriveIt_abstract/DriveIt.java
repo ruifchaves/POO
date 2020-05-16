@@ -244,7 +244,19 @@ public class DriveIt {
     }
 
 
-
-
-
+    //FASE 3
+    public List<BonificaKms> daoPontos(){
+        return this.veics.values().stream().filter(l->l instanceof BonificaKms)
+                                  .map(l-> (BonificaKms) l).collect(Collectors.toList());
+    }
+    public List<BonificaKms> daoPontos2(){
+        List<BonificaKms> bonificaKmsList = new ArrayList<>();
+        for(Veiculo v : this.veics.values()){
+            if(v instanceof VeiculoPremium || v instanceof AutocarroInteligente){
+                BonificaKms bk = (BonificaKms) v.clone();
+                bonificaKmsList.add(bk);
+            }
+        }
+        return bonificaKmsList;
+    }
 }

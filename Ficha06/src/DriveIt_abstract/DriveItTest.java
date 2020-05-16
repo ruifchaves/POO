@@ -96,6 +96,7 @@ public class DriveItTest {
 
 
 
+
         //FASE 2
         System.out.println("------------Fase 2------------:");
         //a v1
@@ -106,5 +107,12 @@ public class DriveItTest {
         System.out.println("\n--List veics ordenados, ordem natural:\n"+di.ordenarVeiculosList().toString());
         //c
         //System.out.println("\n--Set veics ordenados com comparator dado:\n"+di.ordenarVeiculosStream().toString());
+
+        //FASE 3
+        System.out.println("------------Fase 3------------:");
+        //
+        di.daoPontos();
+        System.out.println("\n--List veics que acumulam pontos:\n"+di.daoPontos().toString());
+        System.out.println("\n--List veics que acumulam pontos2:\n"+di.daoPontos2().toString());
     }
 }

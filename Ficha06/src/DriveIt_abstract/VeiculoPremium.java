@@ -2,8 +2,9 @@ package DriveIt_abstract;
 
 import java.time.Year;
 
-public class VeiculoPremium extends Veiculo{
+public class VeiculoPremium extends Veiculo implements BonificaKms{
     private double taxaLuxo;
+    private int pontosPorKm;
 
     public VeiculoPremium(){
         super();
@@ -54,5 +55,20 @@ public class VeiculoPremium extends Veiculo{
     }
     public double custoRealKm(){
         return custoKmLuxo()*getTotalKms();
+    }
+
+    @Override
+    public void setPtsPorKm(int pontos) {
+        pontosPorKm = pontos;
+    }
+
+    @Override
+    public int getPtsPorKm() {
+        return pontosPorKm;
+    }
+
+    @Override
+    public double getPtsVeic(Veiculo v) {
+        return v.getTotalKms()*pontosPorKm;
     }
 }

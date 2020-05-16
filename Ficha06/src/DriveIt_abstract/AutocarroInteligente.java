@@ -2,8 +2,9 @@ package DriveIt_abstract;
 
 import java.time.Year;
 
-public class AutocarroInteligente extends Veiculo {
+public class AutocarroInteligente extends Veiculo implements BonificaKms{
     private int ocupacaoPercent; //from 0 to 100
+    private int pontosPorKm;
 
     public AutocarroInteligente(){
         super();
@@ -51,6 +52,21 @@ public class AutocarroInteligente extends Veiculo {
         if(getOcupacaoPercent()<=60) tax = 0.5;
         else tax = 0.25;
         return getAvgPriceKm()*getTotalKms()*tax;
+    }
+
+    @Override
+    public void setPtsPorKm(int pontos) {
+        pontosPorKm = pontos;
+    }
+
+    @Override
+    public int getPtsPorKm() {
+        return pontosPorKm;
+    }
+
+    @Override
+    public double getPtsVeic(Veiculo v) {
+        return v.getTotalKms()*pontosPorKm;
     }
 
 }
