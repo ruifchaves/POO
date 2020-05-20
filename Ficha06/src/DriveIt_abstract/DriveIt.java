@@ -1,11 +1,10 @@
 package DriveIt_abstract;
 
-import com.sun.deploy.util.VersionID;
-
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class DriveIt {
+public class DriveIt implements Serializable {
     private Map<String, Veiculo> veics;
     private boolean promocao; //se todos os veics ocasiao estao em promocao
 
@@ -57,6 +56,8 @@ public class DriveIt {
                 .append(veics);
         return sb.toString();
     }
+
+
     //FASE 1
     //a
     public boolean existeVeiculo(String cod) {
@@ -258,5 +259,58 @@ public class DriveIt {
             }
         }
         return bonificaKmsList;
+    }
+
+    //FASE 4
+    //1
+    public void gravaTxt(String filename) throws IOException {
+        PrintWriter pw = new PrintWriter(filename);
+        pw.write("---VEÍCULOS REGISTADOS---\n"); //fst line
+        pw.print(this.toStringCSV()); //grava o objeto. Necessario adaptar o toString para que grave com a formatacao de csv
+        pw.flush();
+        pw.close();
+    }
+
+    //toString with CSV formatting
+    public String toStringCSV() {
+        StringBuilder sb = new StringBuilder();
+        for(Veiculo v : veics.values()){
+            sb.append(v.toString());
+        }
+        return sb.toString();
+    }
+
+
+
+    //2
+    public void gravaObj(String filename) throws IOException {
+        ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename));//grava em binario, info minimamente comprimida
+        o.writeObject(this);
+        o.flush();
+        o.close(); //so consigo gravar em modo objeto, caso a classe implemente a interface Serializable.
+        //como temos um map de veics, a classe veiculo tambem tem que implementar serializable
+    }
+
+    public DriveIt lerObj(String filename) throws IOException , ClassNotFoundException{
+        ObjectInputStream o = new ObjectInputStream(new FileInputStream(filename));
+        DriveIt di = (DriveIt) o.readObject(); //pede a classNotFoundException ("o que estava dentro do ficheiro dado nao é uma instancia desta classe")
+        o.close();
+        return di;
+    }
+
+    //3
+    public void remove(String codVeiculo) throws NaoExisteVeiculoException{
+        if(veics.containsKey(codVeiculo))
+            veics.remove(codVeiculo);
+        else
+            throw new NaoExisteVeiculoException(codVeiculo);
+    }
+
+    //4
+    public void adiciona2(Veiculo v) throws ExisteVeiculoException {
+        if(veics.containsKey(v.getMatricula()))
+            throw new ExisteVeiculoException(v.getMatricula());
+        else
+            this.veics.put(v.getMatricula(), v.clone());
     }
 }

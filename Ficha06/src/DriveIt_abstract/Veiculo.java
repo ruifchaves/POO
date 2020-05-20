@@ -1,8 +1,9 @@
 package DriveIt_abstract;
 
+import java.io.Serializable;
 import java.time.Year;
 
-public abstract class Veiculo implements Comparable<Veiculo>{
+public abstract class Veiculo implements Comparable<Veiculo>, Serializable {
     private String matricula;
     private String marca;
     private String modelo;

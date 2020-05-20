@@ -1,8 +1,9 @@
 package DriveIt_abstract;
 
+import java.io.Serializable;
 import java.time.Year;
 
-public class AutocarroInteligente extends Veiculo implements BonificaKms{
+public class AutocarroInteligente extends Veiculo implements BonificaKms, Serializable {
     private int ocupacaoPercent; //from 0 to 100
     private int pontosPorKm;
 

@@ -1,8 +1,9 @@
 package DriveIt_abstract;
 
+import java.io.Serializable;
 import java.time.Year;
 
-public class VeiculoOcasiao extends Veiculo{
+public class VeiculoOcasiao extends Veiculo implements Serializable {
     private boolean promocao;
 
     public VeiculoOcasiao(){

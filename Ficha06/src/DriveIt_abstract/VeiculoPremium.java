@@ -1,8 +1,9 @@
 package DriveIt_abstract;
 
+import java.io.Serializable;
 import java.time.Year;
 
-public class VeiculoPremium extends Veiculo implements BonificaKms{
+public class VeiculoPremium extends Veiculo implements BonificaKms, Serializable {
     private double taxaLuxo;
     private int pontosPorKm;
 

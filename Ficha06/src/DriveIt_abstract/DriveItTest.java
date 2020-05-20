@@ -1,11 +1,13 @@
 package DriveIt_abstract;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.HashSet;
 
-public class DriveItTest {
+public class DriveItTest implements Serializable{
     public static void main(String[] args){
         VeiculoNormal d = new VeiculoNormal("4", "Corvette", "70s", Year.of(2020), 100.0, 4.0, 7.9, 5000);
         VeiculoOcasiao e = new VeiculoOcasiao("5", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 1000000, true);
@@ -114,5 +116,49 @@ public class DriveItTest {
         di.daoPontos();
         System.out.println("\n--List veics que acumulam pontos:\n"+di.daoPontos().toString());
         System.out.println("\n--List veics que acumulam pontos2:\n"+di.daoPontos2().toString());
+
+        //FASE 4
+        System.out.println("------------Fase 4------------:");
+        //1 TODO special characters & divide by columns
+        try{
+            di.gravaTxt("MapToCSV.csv");
+            System.out.println("O ficheiro foi escrito com sucesso!");
+        } catch(IOException ex){
+            System.out.println("Não foi possível escrever o ficheiro CSV!");
+        }
+
+
+        //4
+        VeiculoPremium p = new VeiculoPremium("11", "yo", "yoo", Year.of(2020), 110.0, 5.0, 7.8, 100005, 3.0);
+        try{
+            //di.remove("2"); //nao se passa um Veiculo, senao o codigo nao compilaria
+            //di.adiciona2(o); //ele vê que este já existe e não adiciona os seguintes, so aparece assim uma mensagem de excecao correspondente a este veiculo
+            //di.adiciona2(d);
+            di.adiciona2(p);
+            di.remove("5");
+        } catch(ExisteVeiculoException ex){
+            System.out.println("O Veiculo "+ex.getMessage()+" já existe! ");
+        } //3
+        catch(NaoExisteVeiculoException ex){
+            System.out.println("Tentou remover o veiculo inexistente "+ex.getMessage()+"!");
+        }
+
+        //2 TODO
+        try{
+            di.gravaObj("PL6.obj");
+            System.out.println("O objeto foi escrito com sucesso!");
+        } catch(IOException ex){
+            System.out.println("Erro a escrever!");
+        }
+
+        DriveIt di2 = new DriveIt();
+        try{
+            di2.lerObj("PL6.obj");
+            System.out.println("O objeto foi lido com sucesso!");
+        } catch (IOException | ClassNotFoundException ex){
+            ex.printStackTrace();
+        }
+        System.out.println("Novo DriveIt: "+di2.toString());
+
     }
 }
