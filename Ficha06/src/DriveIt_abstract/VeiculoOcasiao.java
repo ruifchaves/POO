@@ -57,4 +57,16 @@ public class VeiculoOcasiao extends Veiculo implements Serializable {
         if(getPromocao()) tax = 0.75;
         return getAvgPriceKm()*getTotalKms()*tax;
     }
+
+    public String toStringCSV(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toStringCSV());
+        sb.append(";");
+        if(promocao)    sb.append("EM PROMOCAO!");
+        else            sb.append("SEM PROMOCAO!");
+        sb.append(";").append("N/A")
+                .append(";").append("N/A")
+                .append(";").append("N/A");
+        return sb.toString();
+    }
 }

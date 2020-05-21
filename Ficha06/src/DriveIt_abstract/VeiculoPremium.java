@@ -10,14 +10,17 @@ public class VeiculoPremium extends Veiculo implements BonificaKms, Serializable
     public VeiculoPremium(){
         super();
         taxaLuxo = 0.0;
+        pontosPorKm = 0;
     }
-    public VeiculoPremium(String mat, String mar, String mod, Year yr, double vel, double price, double rtg, int kms, double il){
+    public VeiculoPremium(String mat, String mar, String mod, Year yr, double vel, double price, double rtg, int kms, double il, int ptskm){
         super(mat, mar, mod, yr, vel, price, rtg, kms);
         taxaLuxo = il;
+        pontosPorKm = ptskm;
     }
     public VeiculoPremium(VeiculoPremium vp){
         super(vp);
         taxaLuxo = vp.getTaxaLuxo();
+        pontosPorKm = vp.getPtsPorKm();
     }
 
     public double getTaxaLuxo(){
@@ -71,5 +74,15 @@ public class VeiculoPremium extends Veiculo implements BonificaKms, Serializable
     @Override
     public double getPtsVeic(Veiculo v) {
         return v.getTotalKms()*pontosPorKm;
+    }
+
+    public String toStringCSV(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toStringCSV())
+                .append(";").append("N/A")
+                .append(";").append("N/A")
+                .append(";").append(pontosPorKm)
+                .append(";").append(taxaLuxo);
+        return sb.toString();
     }
 }

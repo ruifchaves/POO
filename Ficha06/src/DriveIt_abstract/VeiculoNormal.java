@@ -28,4 +28,14 @@ public class VeiculoNormal extends Veiculo implements Serializable {
     public double custoRealKm(){
         return getAvgPriceKm()*getTotalKms();
     }
+
+    public String toStringCSV(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toStringCSV())
+                .append(";").append("N/A")
+                .append(";").append("N/A")
+                .append(";").append("N/A")
+                .append(";").append("N/A");
+        return sb.toString();
+    }
 }

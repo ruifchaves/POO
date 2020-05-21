@@ -263,20 +263,18 @@ public class DriveIt implements Serializable {
 
     //FASE 4
     //1
-    public void gravaTxt(String filename) throws IOException {
+    public void gravaCSV(String filename) throws IOException {
         PrintWriter pw = new PrintWriter(filename);
-        pw.write("---VEICULOS REGISTADOS---\n"); //fst line
-        StringBuilder header = new StringBuilder(); //columns
-            header.append("matricula;marca;modelo;ano construcao;velocidade media por km;preco teorico base por km;rating;total kms");
-            pw.write(header.toString());
         pw.print(this.toStringCSV()); //grava o objeto. Necessario adaptar o toString para que grave com a formatacao de csv
         pw.flush();
         pw.close();
     }
 
-    //Veics toString with CSV formatting
     public String toStringCSV() {
         StringBuilder sb = new StringBuilder();
+        sb.append("---VEICULOS REGISTADOS---\n"); //fst line
+        //columns
+        sb.append("Matricula;Marca;Modelo;Ano;Velocidade Media/km;Preco Base/km;Rating;Total Kms;Promocao;Ocupacao(%);Pontos/km;Taxa\n");
         for(Veiculo v : veics.values()){
             sb.append(v.toStringCSV());
         }
@@ -296,7 +294,7 @@ public class DriveIt implements Serializable {
 
     public DriveIt lerObj(String filename) throws IOException , ClassNotFoundException{
         ObjectInputStream o = new ObjectInputStream(new FileInputStream(filename));
-        DriveIt di = (DriveIt) o.readObject(); //pede a classNotFoundException ("o que estava dentro do ficheiro dado nao é uma instancia desta classe")
+        DriveIt di = (DriveIt) o.readObject(); //pede classNotFoundException ("o que estava dentro do ficheiro dado nao é uma instancia desta classe")
         o.close();
         return di;
     }

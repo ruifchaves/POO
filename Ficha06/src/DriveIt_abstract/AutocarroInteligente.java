@@ -10,14 +10,17 @@ public class AutocarroInteligente extends Veiculo implements BonificaKms, Serial
     public AutocarroInteligente(){
         super();
         ocupacaoPercent = 0;
+        pontosPorKm = 0;
     }
-    public AutocarroInteligente(String mat, String mar, String mod, Year yr, double vel, double price, double rtg, int kms, int ocup){
+    public AutocarroInteligente(String mat, String mar, String mod, Year yr, double vel, double price, double rtg, int kms, int ocup, int ptskm){
         super(mat, mar, mod, yr, vel, price, rtg, kms);
         ocupacaoPercent = ocup;
+        pontosPorKm = ptskm;
     }
     public AutocarroInteligente(AutocarroInteligente ai){
         super(ai);
         ocupacaoPercent = ai.getOcupacaoPercent();
+        pontosPorKm = ai.getPtsPorKm();
     }
 
     public int getOcupacaoPercent() {
@@ -70,4 +73,13 @@ public class AutocarroInteligente extends Veiculo implements BonificaKms, Serial
         return v.getTotalKms()*pontosPorKm;
     }
 
+    public String toStringCSV(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toStringCSV())
+                .append(";").append("N/A")
+                .append(";").append(ocupacaoPercent)
+                .append(";").append(pontosPorKm)
+                .append(";").append("N/A");
+        return sb.toString();
+    }
 }

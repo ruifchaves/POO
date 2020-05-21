@@ -11,9 +11,9 @@ public class DriveItTest{
         VeiculoNormal d = new VeiculoNormal("4", "Corvette", "70s", Year.of(2020), 100.0, 4.0, 7.9, 5000);
         VeiculoOcasiao e = new VeiculoOcasiao("5", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 1000000, true);
         VeiculoOcasiao f = new VeiculoOcasiao("6", "McLaren", "man", Year.of(2020), 100.0, 4.0, 7.9, 20000, false);
-        VeiculoPremium j = new VeiculoPremium("7", "Fiat", "man", Year.of(2020), 100.0, 4.0, 7.9, 570505, 5.5);
-        AutocarroInteligente k = new AutocarroInteligente("8", "Ford", "man", Year.of(2020), 100.0, 4.0, 7.9, 656461, 50);
-        AutocarroInteligente l = new AutocarroInteligente("9", "Aston Martin", "007", Year.of(2020), 100.0, 4.0, 7.9, 656461, 75);
+        VeiculoPremium j = new VeiculoPremium("7", "Fiat", "man", Year.of(2020), 100.0, 4.0, 7.9, 570505, 5.5, 3);
+        AutocarroInteligente k = new AutocarroInteligente("8", "Ford", "man", Year.of(2020), 100.0, 4.0, 7.9, 656461, 50,5);
+        AutocarroInteligente l = new AutocarroInteligente("9", "Aston Martin", "007", Year.of(2020), 100.0, 4.0, 7.9, 656461, 75,20);
 
         DriveIt di = new DriveIt();
         di.adiciona(d);
@@ -62,7 +62,7 @@ public class DriveItTest{
         //j
         VeiculoNormal m = new VeiculoNormal("8", "Corvette", "70s", Year.of(2020), 100.0, 4.0, 7.9, 100000);
         VeiculoOcasiao n = new VeiculoOcasiao("9", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 100000, true);
-        VeiculoPremium o = new VeiculoPremium("10", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 100000, 2.0);
+        VeiculoPremium o = new VeiculoPremium("10", "Seat", "ibiza", Year.of(2020), 100.0, 4.0, 7.9, 100000, 2.0, 3);
         Set<Veiculo> test = new HashSet<>();
         test.add(m);
         test.add(n);
@@ -120,15 +120,14 @@ public class DriveItTest{
         System.out.println("------------Fase 4------------");
         //1 TODO special characters
         try {
-            di.gravaTxt("MapToCSV.csv");
+            di.gravaCSV("MapToCSV.csv");
             System.out.println("O ficheiro foi escrito com sucesso!");
         } catch (IOException ex) {
             System.out.println("Não foi possível escrever o ficheiro CSV!");
         }
 
-
         //4
-        VeiculoPremium p = new VeiculoPremium("11", "yo", "yoo", Year.of(2020), 110.0, 5.0, 7.8, 100005, 3.0);
+        VeiculoPremium p = new VeiculoPremium("11", "yo", "yoo", Year.of(2020), 110.0, 5.0, 7.8, 100005, 3.0, 5);
         try {
             //di.remove("2"); //nao se passa um Veiculo, senao o codigo nao compilaria
             //di.adiciona2(o); //ele vê que este já existe e não adiciona os seguintes, so aparece assim uma mensagem de excecao correspondente a este veiculo
@@ -137,7 +136,8 @@ public class DriveItTest{
             di.remove("5");
         } catch (ExisteVeiculoException ex) {
             System.out.println("O Veiculo " + ex.getMessage() + " já existe! ");
-        } //3
+        }
+        //3
         catch (NaoExisteVeiculoException ex) {
             System.out.println("Tentou remover o veiculo inexistente " + ex.getMessage() + "!");
         }
