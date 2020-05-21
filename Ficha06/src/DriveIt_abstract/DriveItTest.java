@@ -118,7 +118,7 @@ public class DriveItTest{
 
         //FASE 4
         System.out.println("------------Fase 4------------");
-        //1 TODO special characters
+        //1 TODO special characters?
         try {
             di.gravaCSV("MapToCSV.csv");
             System.out.println("O ficheiro foi escrito com sucesso!");
@@ -142,7 +142,7 @@ public class DriveItTest{
             System.out.println("Tentou remover o veiculo inexistente " + ex.getMessage() + "!");
         }
 
-        //2 TODO not working gravaObj or lerObj, mas sem exceptions. Até as subclasses implementam Serializable
+        //2
         try {
             di.gravaObj("PL6.obj");
             System.out.println("O objeto foi escrito com sucesso!");
@@ -152,7 +152,7 @@ public class DriveItTest{
 
         DriveIt di2 = new DriveIt();
         try {
-            di2.lerObj("PL6.obj");
+            di2 = di2.lerObj("PL6.obj");
             System.out.println("O objeto foi lido com sucesso!");
         } catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
