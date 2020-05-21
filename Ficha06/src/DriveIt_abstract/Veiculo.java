@@ -128,4 +128,17 @@ public abstract class Veiculo implements Comparable<Veiculo>, Serializable {
             return modelo.compareTo(v.getModelo());
         return marca.compareTo(v.getMarca());
     }
+
+    public String toStringCSV(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n").append(matricula)
+                .append(";").append(marca)
+                .append(";").append(modelo)
+                .append(";").append(anoConstrucao)
+                .append(";").append(avgSpeedKm)
+                .append(";").append(avgPriceKm)
+                .append(";").append(rating)
+                .append(";").append(totalKms);
+        return sb.toString();
+    }
 }

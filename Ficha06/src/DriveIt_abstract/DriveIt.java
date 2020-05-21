@@ -265,17 +265,20 @@ public class DriveIt implements Serializable {
     //1
     public void gravaTxt(String filename) throws IOException {
         PrintWriter pw = new PrintWriter(filename);
-        pw.write("---VEÍCULOS REGISTADOS---\n"); //fst line
+        pw.write("---VEICULOS REGISTADOS---\n"); //fst line
+        StringBuilder header = new StringBuilder(); //columns
+            header.append("matricula;marca;modelo;ano construcao;velocidade media por km;preco teorico base por km;rating;total kms");
+            pw.write(header.toString());
         pw.print(this.toStringCSV()); //grava o objeto. Necessario adaptar o toString para que grave com a formatacao de csv
         pw.flush();
         pw.close();
     }
 
-    //toString with CSV formatting
+    //Veics toString with CSV formatting
     public String toStringCSV() {
         StringBuilder sb = new StringBuilder();
         for(Veiculo v : veics.values()){
-            sb.append(v.toString());
+            sb.append(v.toStringCSV());
         }
         return sb.toString();
     }
@@ -312,5 +315,34 @@ public class DriveIt implements Serializable {
             throw new ExisteVeiculoException(v.getMatricula());
         else
             this.veics.put(v.getMatricula(), v.clone());
+    }
+
+    //5
+    public void classificarVeiculo2(String cod, int rtg) throws ValorInvalidoException, NaoExisteVeiculoException{
+        if(rtg>=0 && rtg<=10){
+            if(veics.containsKey(cod)) {
+                Veiculo v = veics.get(cod).clone();
+                double newrtg = (v.getRating() + rtg) / 2;
+                v.setRating(newrtg);
+                veics.replace(cod, v);
+            }
+            else throw new NaoExisteVeiculoException(cod);
+        }else throw new ValorInvalidoException(rtg);
+    }
+
+    public Veiculo getVeiculo2(String codVeiculo) throws NaoExisteVeiculoException {
+        if(veics.containsKey(codVeiculo))
+            return veics.get(codVeiculo).clone();
+        else throw new NaoExisteVeiculoException(codVeiculo);
+    }
+
+    public void registarAluguer2(String codVeiculo, int numKms) throws NaoExisteVeiculoException, ValorInvalidoException {
+        if(veics.containsKey(codVeiculo)){
+            if(numKms>=0){
+                Veiculo v = veics.get(codVeiculo).clone();
+                v.setTotalKms(v.getTotalKms() + numKms);
+                veics.replace(codVeiculo, v);
+            } else throw new ValorInvalidoException(codVeiculo, numKms);
+        } else throw new NaoExisteVeiculoException(codVeiculo);
     }
 }

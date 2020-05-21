@@ -1,0 +1,9 @@
+---VEICULOS REGISTADOS---
+matricula;marca;modelo;ano construcao;velocidade media por km;preco teorico base por km;rating;total kms
+4;Corvette;70s;2020;100.0;4.0;7.9;5000
+5;Seat;ibiza;2020;100.0;4.0;7.9;1000000
+6;McLaren;man;2020;100.0;4.0;7.9;20000
+7;Fiat;man;2020;100.0;4.0;8.95;572505
+8;Corvette;70s;2020;100.0;4.0;7.9;100000
+9;Seat;ibiza;2020;100.0;4.0;7.9;100000
+10;Seat;ibiza;2020;100.0;4.0;7.9;100000
