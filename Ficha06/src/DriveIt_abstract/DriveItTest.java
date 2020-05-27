@@ -3,6 +3,7 @@ package DriveIt_abstract;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.Year;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -192,22 +193,23 @@ public class DriveItTest{
         }
 
         //6
-        String[] ops = { " A ", " B ", " C "};
+        String[] ops = { " A ", " Menu B ", " Menu C "};
         String[] ops2 = { " B.a ", " B.b ", " B.c "};
         Menu me = new Menu(ops);
         Menu me2 = new Menu(ops2);
-        me.executa();
+        Menu me3 =  new Menu(Arrays.asList(" C.a ", " C.b ", " C.c ", " C.d ")); //com segundo construtor
+        me.executa(0);
         int op;
         op = me.getOpcao();
         System.out.println(" Opção lida: "+op);
         switch (op){
             case 1: System.out.println(" Opção A...");
                     break;
-            case 2: me2.executa();
+            case 2: me2.executa(2);
                     break;
-            case 3: //metodo;
+            case 3: me3.executa(3);
                     break;
-            default: System.out.println(" Default case switch");
+            default: System.out.println("A SAIR...");
         }
     }
 }
