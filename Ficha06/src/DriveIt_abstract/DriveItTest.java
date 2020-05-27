@@ -190,5 +190,24 @@ public class DriveItTest{
         } catch (ValorInvalidoException ex) {
             System.out.println("\nOcorreu um erro: Impossível registar " + ex.getValorInvalido() + " kms no veículo " + ex.getMessage() + ", valor inválido!");
         }
+
+        //6
+        String[] ops = { " A ", " B ", " C "};
+        String[] ops2 = { " B.a ", " B.b ", " B.c "};
+        Menu me = new Menu(ops);
+        Menu me2 = new Menu(ops2);
+        me.executa();
+        int op;
+        op = me.getOpcao();
+        System.out.println(" Opção lida: "+op);
+        switch (op){
+            case 1: System.out.println(" Opção A...");
+                    break;
+            case 2: me2.executa();
+                    break;
+            case 3: //metodo;
+                    break;
+            default: System.out.println(" Default case switch");
+        }
     }
 }
